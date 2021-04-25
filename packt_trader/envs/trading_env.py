@@ -206,7 +206,7 @@ class TradingEnvironment(gym.Env):
         self.ticker = ticker
         self.time_cost_bps = time_cost_bps
         self.data_source = DataSource(trading_days=self.trading_days,
-                                      ticker=ticker)
+                                      ticker=self.ticker)
         self.simulator = TradingSimulator(steps=self.trading_days,
                                           trading_cost_bps=self.trading_cost_bps,
                                           time_cost_bps=self.time_cost_bps)
