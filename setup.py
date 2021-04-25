@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
       name='packtTrader',
-      version='0.0.7',
+      version='0.0.8',
       install_requires=['gym', 'numpy', 'pandas', 'matplotlib', 'yfinance', 'finta'],
       description='',
       url='',
