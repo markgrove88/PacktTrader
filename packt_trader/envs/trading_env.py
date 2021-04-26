@@ -75,7 +75,7 @@ class DataSource:
         self.data['ret_10'] = self.data.close.pct_change(10)
         self.data['ret_21'] = self.data.close.pct_change(21)
         self.data = (self.data.replace((np.inf, -np.inf), np.nan)
-                     .drop(['open', 'high', 'low', 'close', 'volume', 'sma', 'rsi', 'obv', 'btc:close'], axis=1)
+                     .drop(['high', 'low', 'close', 'volume'], axis=1)
                      .dropna())
 
         r = self.data.returns.copy()
