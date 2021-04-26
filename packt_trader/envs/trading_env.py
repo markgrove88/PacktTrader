@@ -49,8 +49,7 @@ class DataSource:
     Provides data for each new episode.
     """
 
-    def __init__(self, trading_days=252, ticker='ETH-USD', normalize=True):
-        self.ticker = ticker
+    def __init__(self, trading_days=252, normalize=True):
         self.trading_days = trading_days
         self.normalize = normalize
         self.data = self.load_data()
@@ -61,11 +60,11 @@ class DataSource:
         self.offset = None
 
     def load_data(self):
-        log.info('loading data for {}...'.format(self.ticker))
+        log.info('loading data for {}...'.format('TestText'))
         idx = pd.IndexSlice
         df = pulledData.loc[idx[:, pulledData.index], ['Open', 'High', 'Low', 'Close', 'Volume', 'SMA', 'RSI', 'OBV', 'BTC:Close']].sort_index()
         df.columns = ['open', 'high', 'low', 'close', 'volume', 'sma', 'rsi', 'obv', 'btc:close']
-        log.info('got data for {}...'.format(self.ticker))
+        log.info('got data for {}...'.format('TestText'))
         return df
 
     def preprocess_data(self):
@@ -199,14 +198,11 @@ class TradingEnvironment(gym.Env):
     def __init__(self,
                  trading_days=252,
                  trading_cost_bps=1e-3,
-                 time_cost_bps=1e-4,
-                 ticker='ETH-USD'):
+                 time_cost_bps=1e-4):
         self.trading_days = trading_days
         self.trading_cost_bps = trading_cost_bps
-        self.ticker = ticker
         self.time_cost_bps = time_cost_bps
-        self.data_source = DataSource(trading_days=self.trading_days,
-                                      ticker=self.ticker)
+        self.data_source = DataSource(trading_days=self.trading_days)
         self.simulator = TradingSimulator(steps=self.trading_days,
                                           trading_cost_bps=self.trading_cost_bps,
                                           time_cost_bps=self.time_cost_bps)
