@@ -61,8 +61,7 @@ class DataSource:
 
     def load_data(self):
         log.info('loading data for {}...'.format('TestText'))
-        idx = pd.IndexSlice
-        df = pulledData.loc[idx[:, pulledData.index], ['Open', 'High', 'Low', 'Close', 'Volume', 'SMA', 'RSI', 'OBV', 'BTC:Close']].sort_index()
+        df = pulledData
         df.columns = ['open', 'high', 'low', 'close', 'volume', 'sma', 'rsi', 'obv', 'btc:close']
         log.info('got data for {}...'.format('TestText'))
         return df
